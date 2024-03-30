@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { StatusBar, Text, View } from "react-native";
+import React from "react";
+import { View } from "react-native";
 import { aspectratio, deviceWidth } from "../../constants/distances";
-import { Divider } from "../divider/divider";
 import { BackButton } from "../backButton/backButton";
+import { Divider } from "../divider/divider";
 
 interface IPrimaryButtonProps {
     hasBackButton?: boolean;
@@ -10,7 +10,7 @@ interface IPrimaryButtonProps {
     leftComponent?: undefined;
     centerComponent?: undefined;
     rightComponent?: undefined;
-    children: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined;
+    children?: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined;
 }
 
 

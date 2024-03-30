@@ -6,29 +6,32 @@ interface IPrimaryInputAreaProps {
     hintText: string;
     onChange?(text: string): void;
     containerStyle?: StyleProp<ViewStyle>;
-    hintTextStyle?: StyleProp<TextStyle>;
-    errorText: string;
+    inputTextStyle?: StyleProp<TextStyle>;
 }
 
-export function PrimaryInputArea({containerStyle, hintTextStyle, hintText, onChange = (text) => text, errorText} : IPrimaryInputAreaProps){
+export function PrimaryInputArea({containerStyle, inputTextStyle, hintText, onChange = (text) => text} : IPrimaryInputAreaProps){
 
     return(
         <View 
             style={[{
-                width: aspectratio(300, 'width'),
+                width: aspectratio(343, 'width'),
                 height: aspectratio(40, 'height'), 
-                backgroundColor: colors.lightGray, 
+                backgroundColor: colors.inputAreaGray, 
                 alignItems: 'center', 
                 justifyContent: 'center',
                 marginVertical: aspectratio(10, 'width'),
-                elevation: 1,
-                borderRadius: 12
+                borderColor: colors.inputAreaBorderGray,
+                borderWidth: 1,
+                borderRadius: 8
             }, containerStyle]}>
             <TextInput
-                textAlign="center"
+                textAlign="left"
+                numberOfLines={1}
+                maxLength={30}
+                placeholderTextColor={colors.dividerGray}
                 onChangeText={(text) => onChange(text)} 
-                style={[{fontSize: 15, color: colors.white}, hintTextStyle]} placeholder={hintText}></TextInput>
-            {errorText && <Text>{errorText}</Text>}
+                style={[{width: aspectratio(320, 'width'), fontSize: 15}, inputTextStyle]} placeholder={hintText}>
+            </TextInput>
     </View>
     )
 }

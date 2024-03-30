@@ -22,8 +22,8 @@ export function OnBoardingScreen({ navigation }: NativeStackScreenProps<RootStac
             <View style={{alignItems:'center', justifyContent:'center', position:'absolute', bottom: 0}}>
                 <Divider/>
                 <Text style={{marginVertical: aspectratio(18, 'height')}}>Don't have an account? 
-                    <Text style={{}} >
-                        Sign up.
+                    <Text style={{fontWeight: 'bold'}} >
+                        {' '}Sign up.
                     </Text>
                 </Text>
             </View>

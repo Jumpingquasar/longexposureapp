@@ -21,13 +21,12 @@ export default function PrimaryButton({buttonText, containerStyle, buttonTextSty
             disabled={disabled}
             onPress={onPress}
             style={[{
-                width: aspectratio(307, 'width'),
+                width: aspectratio(343, 'width'),
                 height: aspectratio(44, 'height'), 
-                backgroundColor: disabled ? colors.lightGray : colors.instagramBlue, 
+                backgroundColor: disabled ? colors.disabledButtonBlue : colors.instagramBlue, 
                 alignItems: 'center', 
                 justifyContent: 'center',
                 marginVertical: aspectratio(20, 'width'),
-                elevation: 1,
                 borderRadius: 8
             }, containerStyle]}>
                 <Text style={[{fontSize: 15, color: colors.white}, buttonTextStyle]} >{buttonText}</Text>

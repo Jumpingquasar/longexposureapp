@@ -1,10 +1,11 @@
-import { BackHandler, Image, TouchableWithoutFeedback } from "react-native";
+import { Image, TouchableWithoutFeedback } from "react-native";
 import images from "../../constants/images";
-import { StackActions, useNavigation } from "@react-navigation/native";
+import { useNavigation } from '@react-navigation/native';
 
 export function BackButton(){
+    const navigation = useNavigation();
     return(
-        <TouchableWithoutFeedback onPress={() => StackActions.pop()} >
+        <TouchableWithoutFeedback onPress={() => navigation.goBack()} >
             <Image source={images.back}></Image>
         </TouchableWithoutFeedback>
     )

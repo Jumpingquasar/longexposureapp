@@ -2,8 +2,8 @@ import { Dimensions } from "react-native";
 
 export const deviceWidth = Dimensions.get("window").width;
 export const deviceHeight = Dimensions.get("window").height;
-const designHeight = 736;
-const designWidth = 414;
+const designHeight = 812;
+const designWidth = 375;
 
 export const aspectratio = (value: number, wh: string) => {
   switch (wh) {

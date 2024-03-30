@@ -1,10 +1,27 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { UserProfileEntity } from '../types/user-model'
 
-const todosSlice = createSlice({
-  name: 'todos',
-  initialState: [],
-  reducers: {},
+export interface UserState {
+  user: UserProfileEntity
+}
+
+const initialState: UserState = {
+  user: {
+    Email: '',
+    isGuest: true
+  },
+}
+
+
+const authSlice = createSlice({
+  name: 'auth',
+  initialState,
+  reducers: {
+    setUser: (state, action: PayloadAction<UserProfileEntity>) => {
+      state.user = action.payload;
+    },
+  },
 })
 
-export const {} = todosSlice.actions
-export default todosSlice.reducer
+export const { setUser } = authSlice.actions
+export default authSlice.reducer

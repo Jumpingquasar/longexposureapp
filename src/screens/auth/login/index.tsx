@@ -1,92 +1,54 @@
-import { Text, View } from "react-native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
-import PrimaryButton from "../../../components/primaryButton";
-import textStyles from "../../../constants/textStyles";
-import { AppScreens } from "../../../navigation/rootNavigation";
-import { RootStackParamList } from "../../../types/navigation";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { PrimaryInputArea } from "../../../components/primaryInputArea";
-import { useEffect, useState } from "react";
-import * as Yup from "yup";
+import { useState } from "react";
+import { Image, View } from "react-native";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 import { AppBar } from "../../../components/appBar/appBar";
+import PrimaryButton from "../../../components/primaryButton";
+import { PrimaryInputArea } from "../../../components/primaryInputArea";
+import { aspectratio } from "../../../constants/distances";
+import images from "../../../constants/images";
+import { loginRequest } from "../../../store/thunks/userThunks";
+import { RootStackParamList } from "../../../types/navigation";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../../store/authSlice";
 
-export function LoginScreen({ navigation : {replace} }: NativeStackScreenProps<RootStackParamList, "Login">){
+export function LoginScreen({}: NativeStackScreenProps<RootStackParamList, "Login">){
 
+    const dispatch = useDispatch();
+    
     const [formData, setFormData] = useState({
         Email: "",
         Password: "",
     });
 
-    const [pageErrors, setPageErrors] = useState<any>({
-        Email: "",
-        Password: "",
-      });
 
     const onChangeText = (key: string, value: string) => {
         setFormData((prevState) => ({ ...prevState, [key]: value }));
     };
 
-    useEffect(() => {        
-        setPageErrors({})
-    }, [formData])
-
-    const onLogin = () => {     
-        let formErrors = {} as any;
-        setPageErrors({})
-        const validationSchema = Yup.object({
-            Email: Yup.string()
-                .required("Please enter your email"),
-            Password: Yup.string()
-                .required("Password can not be empty."),
-          });
-      
-          validationSchema
-            .validate(formData, {
-              abortEarly: false,
-            })
-            .then(() => {
-                console.log(true)
-            //   castThunkAction<UserSignInResponseEntity>(dispatch(userLogin(formData)))
-            //     .then((response) => {
-            //     })
-            //     .catch((error: String) => console.log(error));
-            })
-            .catch((err: any) => {
-                err.inner.forEach((e: any) => {
-                  const { path, message } = e;
-                  formErrors[path] = message;
-                });
-                setPageErrors(formErrors);
-            });
+    const onLogin = async () => {
+        const loginResponse = await loginRequest(formData);
+        if (loginResponse)
+            dispatch(setUser({Email: formData.Email, isGuest: false}))
     };
-
-    console.log(pageErrors)
 
     return(
         <View style={{alignItems:'center', justifyContent:'center', flex: 1, backgroundColor: Colors.white}}>
-            <AppBar hasBackButton={true} isDivided={true}>
-                <Text>Hi</Text>
-                <Text>Hi</Text>
-            </AppBar>
+            <AppBar hasBackButton={true}/>
+            <Image style={{marginVertical: aspectratio(50, 'height')}} source={images.instagramLogo}/>
             <PrimaryInputArea
                 hintText="Email"
                 onChange={(text) =>{onChangeText('Email', text)}}
-                errorText={pageErrors.Email}
             />
             <PrimaryInputArea
                 hintText="Password"
                 onChange={(text) =>{onChangeText('Password', text)}}
-                errorText={pageErrors.Password}
             />
 
             <PrimaryButton
+                disabled={!formData.Email || !formData.Password}
                 buttonText="Login"
-                onPress={()=>{
-                    onLogin();
-                    // fetch("/api/login", {method: 'POST', body: JSON.stringify(formData)})
-                    // .then((res) => res.json())
-                    // .then((json) => console.log(json))
-                }}
+                onPress={onLogin}
             />
         </View>
     )
