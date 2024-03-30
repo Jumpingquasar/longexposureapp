@@ -1,13 +1,16 @@
 import React from "react";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { OnBoarding } from "../screens/auth/OnBoarding";
+import { OnBoardingScreen } from "../screens/auth/onBoarding";
+import { LoginScreen } from "../screens/auth/login";
+import { RootStackParamList } from "../types/navigation";
 
 export enum AppScreens {
   OnBoarding = 'OnBoarding',
   Home = 'Home',
+  Login = 'Login'
 }
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function RootNavigation() {
   const INITIAL_ROUTE_NAME = ( !true)
@@ -21,8 +24,13 @@ export default function RootNavigation() {
     >
       <Stack.Screen
         name={AppScreens.OnBoarding}
-        component={OnBoarding}
-      />
+        component={OnBoardingScreen}
+      />      
+      
+      <Stack.Screen
+        name={AppScreens.Login}
+        component={LoginScreen}
+    />
     </Stack.Navigator>
   );
 }
