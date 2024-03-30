@@ -12,7 +12,7 @@ interface IPrimaryButtonProps {
     border?: boolean;
     disabled?: boolean;
     borderRadius?: number;
-  }
+}
 
 export default function PrimaryButton({buttonText, containerStyle, buttonTextStyle, disabled, onPress} : IPrimaryButtonProps){
 
@@ -21,14 +21,14 @@ export default function PrimaryButton({buttonText, containerStyle, buttonTextSty
             disabled={disabled}
             onPress={onPress}
             style={[{
-                width: aspectratio(200, 'width'),
-                height: aspectratio(40, 'height'), 
+                width: aspectratio(307, 'width'),
+                height: aspectratio(44, 'height'), 
                 backgroundColor: disabled ? colors.lightGray : colors.instagramBlue, 
                 alignItems: 'center', 
                 justifyContent: 'center',
                 marginVertical: aspectratio(20, 'width'),
-                elevation: 5,
-                borderRadius: 16
+                elevation: 1,
+                borderRadius: 8
             }, containerStyle]}>
                 <Text style={[{fontSize: 15, color: colors.white}, buttonTextStyle]} >{buttonText}</Text>
         </TouchableOpacity>

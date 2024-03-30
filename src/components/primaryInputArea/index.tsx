@@ -1,20 +1,16 @@
-import { StyleProp, TextInput, TextStyle, View, ViewStyle } from "react-native";
+import { StyleProp, Text, TextInput, TextStyle, View, ViewStyle } from "react-native";
 import colors from "../../constants/colors";
 import { aspectratio } from "../../constants/distances";
 
 interface IPrimaryInputAreaProps {
     hintText: string;
-    onChange(): void;
+    onChange?(text: string): void;
     containerStyle?: StyleProp<ViewStyle>;
     hintTextStyle?: StyleProp<TextStyle>;
-    rounded?: boolean;
-    backgroundColor?: string;
-    border?: boolean;
-    disabled?: boolean;
-    borderRadius?: number;
+    errorText: string;
 }
 
-export function PrimaryInputArea({containerStyle, hintTextStyle, hintText, onChange} : IPrimaryInputAreaProps){
+export function PrimaryInputArea({containerStyle, hintTextStyle, hintText, onChange = (text) => text, errorText} : IPrimaryInputAreaProps){
 
     return(
         <View 
@@ -28,7 +24,11 @@ export function PrimaryInputArea({containerStyle, hintTextStyle, hintText, onCha
                 elevation: 1,
                 borderRadius: 12
             }, containerStyle]}>
-            <TextInput onChange={onChange} style={[{fontSize: 15, color: colors.white}, hintTextStyle]}>{hintText}</TextInput>
+            <TextInput
+                textAlign="center"
+                onChangeText={(text) => onChange(text)} 
+                style={[{fontSize: 15, color: colors.white}, hintTextStyle]} placeholder={hintText}></TextInput>
+            {errorText && <Text>{errorText}</Text>}
     </View>
     )
 }
