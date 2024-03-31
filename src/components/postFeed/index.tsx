@@ -6,7 +6,7 @@ import textStyles from "../../constants/textStyles";
 import { ContentType } from "../../store/types/content-model";
 import { PostEntity } from "../../store/types/post-model";
 import { PageIndicator } from "../pageIndicator";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Video from "react-native-video";
 
 interface IPostFeedProps {
@@ -15,6 +15,7 @@ interface IPostFeedProps {
 
 export const PostFeed = ({post} : IPostFeedProps) => {
     const [currentPage, setCurrentPage] = useState<number | null>(0);
+    const player = useRef<Video>(null);
 
     const onViewableItemsChanged = (info: {viewableItems : ViewToken[]}) => {
         if (info && info.viewableItems.length > 0) {
@@ -40,24 +41,25 @@ export const PostFeed = ({post} : IPostFeedProps) => {
             horizontal
             data={post.contents}
             pagingEnabled
+            
             onViewableItemsChanged={onViewableItemsChanged}
             renderItem={({ item }) =>  {
                 return (
                     item.contentType == ContentType.Image ? 
                     <FastImage style={{width: deviceWidth , height: deviceWidth}} source={{uri: item.contentURI, priority: FastImage.priority.high}}/>
                     :
-                    <Video repeat={true} resizeMode="cover" style={{width: deviceWidth , height: deviceWidth}} source={{uri: item.contentURI}}></Video>
+                    <Video ref={player} onLoad={() => {player.current && player.current.seek(0)}} repeat={true} resizeMode="cover" style={{width: deviceWidth , height: deviceWidth}} source={{uri: item.contentURI}}></Video>
                 )                    
             }}
             />
             <View style={{paddingHorizontal: aspectratio(10, 'width'), height: aspectratio(54, 'height'), justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row'}}>
                 <View style={{width: aspectratio(100, 'width'), justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row'}}>
-                    <Image resizeMode='cover' source={images.like}/>
-                    <Image resizeMode='cover' source={images.comment}/>
-                    <Image resizeMode='cover' source={images.message}/>
+                    <Image resizeMode='contain' source={images.like}/>
+                    <Image resizeMode='contain' source={images.comment}/>
+                    <Image resizeMode='contain' source={images.message}/>
                 </View>
                 {post.contents.length != 1 && <PageIndicator currentIndex={currentPage} data={post.contents}/>} 
-                <Image resizeMode='cover' source={images.save}/>
+                <Image resizeMode='contain' source={images.save}/>
             </View>
         </>
     )

@@ -14,9 +14,9 @@ export const PageIndicator = ({data, currentIndex}: IPageIndicatorProps) => {
 
   return (
     <View style={{width: deviceWidth, justifyContent: 'center', alignItems: 'center', position:'absolute'}}>
-        <View style={{flexDirection: 'row', width: aspectratio(25, 'width'), justifyContent: 'space-between'}}>
+        <View style={{flexDirection: 'row', width: aspectratio(18, 'width'), justifyContent: 'space-between'}}>
             {data.map((_, index) => {
-                return (<View style={{width:10, height: 10, borderRadius: 10, backgroundColor: currentIndex == index ? colors.instagramBlue : colors.inputAreaBorderGray}}></View>)
+                return (<View key={index} style={{width:6, height: 6, borderRadius: 6, backgroundColor: currentIndex == index ? colors.instagramBlue : colors.inputAreaBorderGray}}></View>)
             })}
         </View>
     </View>

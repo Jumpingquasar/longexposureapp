@@ -1,6 +1,8 @@
-export async function fetchPostsAsync(): Promise<Response> {
+import { FeedRequestModel, SearchRequestModel } from "../store/types/post-model";
+
+export async function fetchPostsAsync(query : FeedRequestModel): Promise<Response> {
     try {
-        let response = await fetch("/api/v1/feed", {method: "GET"});
+        let response = await fetch("/api/v1/feed", {method: "POST", body: JSON.stringify(query)});
         return response;
     } catch (error: any) {
         console.error("Error fetching posts:", error);
@@ -8,7 +10,7 @@ export async function fetchPostsAsync(): Promise<Response> {
     }
 }
 
-export async function fetchSearchAsync(query: string): Promise<Response> {
+export async function fetchSearchAsync(query: SearchRequestModel): Promise<Response> {
     try {
         let response = await fetch("/api/v1/search", {method: "POST", body: JSON.stringify(query)});
         return response;

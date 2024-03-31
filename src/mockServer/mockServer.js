@@ -9,17 +9,18 @@ const key = 'longExposureIsGreat!&&1998'
 export function mockServerStart(){
     createServer({
         routes() {
-            this.post("/api/v1/login", (schema, request) => {                
-                let attrs = JSON.parse(request.requestBody)
+            this.post("/api/v1/login", async (schema, request) => {                
+                let attrs = await JSON.parse(request.requestBody)
                 return attrs;
               })
 
-            this.get("/api/v1/feed", () => {
-                return repository.posts;
-            })
-            this.post("/api/v1/search", (schema, request) => {
-                console.log(JSON.parse(request.requestBody))
-                return repository.posts;
+            this.post("/api/v1/feed", async (schema, request) => {
+                let attrs = await JSON.parse(request.requestBody)
+                return repository.posts.slice(attrs.itemStart, attrs.itemStart + attrs.feedIterationSize)
+            }) 
+            this.post("/api/v1/search", async (schema, request) => {
+                let attrs = await JSON.parse(request.requestBody)
+                return repository.posts.slice(attrs.itemStart, attrs.itemStart + attrs.searchIterationSize)
             })
         },
     })
