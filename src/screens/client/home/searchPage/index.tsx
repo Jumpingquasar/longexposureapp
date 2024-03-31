@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FlatList } from "react-native";
 import { PostSearch } from "../../../../components/postSearch";
 import { searchIterationSize } from "../../../../constants/misc";
@@ -12,6 +12,7 @@ interface ISearchPageProps {
 export const SearchPage = ({ searchTerm } : ISearchPageProps) => {
     const [posts, setPosts] = useState<PostEntity[]>([]);
     const [itemStart, setStart] = useState(0);
+    const timeout = useRef(null);
     
     function getContentsScroll(){
         fetchSearchAsync({itemStart, searchIterationSize}).then(async (data) => {
@@ -24,7 +25,8 @@ export const SearchPage = ({ searchTerm } : ISearchPageProps) => {
 
     useEffect(() => {
         setPosts([])
-        setTimeout(() =>{
+        clearTimeout(timeout.current);
+        timeout.current = setTimeout(() =>{
             getContentsScroll();
         }, 1000)
     }, [searchTerm])
