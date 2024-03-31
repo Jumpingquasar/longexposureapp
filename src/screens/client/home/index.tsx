@@ -16,7 +16,7 @@ export const Home = () => {
                 <Image style={{height: 33, resizeMode: 'contain', alignSelf: 'center', alignContent: 'center'}} source={images.instagramLogo}/>
             </AppBar>
             <PrimaryInputArea onChange={(text) => setSearchText(text)} hintText="Search" isSearch={true}/>
-            {searchText.length != 0 ? <SearchPage/> : <FeedPage/>}
+            {searchText.length != 0 ? <SearchPage query={searchText} /> : <FeedPage/>}
         </View>
     )
 }

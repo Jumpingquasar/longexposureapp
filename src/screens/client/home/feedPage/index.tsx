@@ -15,6 +15,7 @@ export const FeedPage = () => {
 
     return(
         <FlatList
+            showsVerticalScrollIndicator={false}
             data={posts}
             renderItem={({ item }) =>  {return (<PostFeed post={item}/>)}}>
         </FlatList>
