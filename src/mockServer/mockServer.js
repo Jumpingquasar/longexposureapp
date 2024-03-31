@@ -17,6 +17,10 @@ export function mockServerStart(){
             this.get("/api/v1/feed", () => {
                 return repository.posts;
             })
+            this.post("/api/v1/search", (schema, request) => {
+                console.log(JSON.parse(request.requestBody))
+                return repository.posts;
+            })
         },
     })
 }
