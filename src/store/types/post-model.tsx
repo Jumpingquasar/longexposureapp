@@ -1,6 +1,8 @@
+import { ContentEntity } from "./content-model";
+
 export interface PostEntity {
     userName: string;
-    images: string[];
+    contents: ContentEntity[];
     profilePhoto: string;
     location?: string;
 }

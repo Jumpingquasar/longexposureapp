@@ -4,6 +4,8 @@ import { PostEntity } from "../../store/types/post-model"
 import { FlatList, Image, Text, View } from "react-native";
 import images from "../../constants/images";
 import textStyles from "../../constants/textStyles";
+import { ContentType } from "../../store/types/content-model";
+import Video from "react-native-video";
 
 interface IPostFeedProps {
     post: PostEntity;
@@ -11,8 +13,6 @@ interface IPostFeedProps {
 }
 
 export const PostFeed = ({post, key} : IPostFeedProps) => {
-
-    const DATA = post.images.map((image, index) => {return {id: index, imageURI: image}})
 
     return(
         <>
@@ -24,24 +24,32 @@ export const PostFeed = ({post, key} : IPostFeedProps) => {
                         {post.location ? <Text>{post.userName}</Text> : <View></View>}
                     </View>
                 </View>
-                <Image resizeMode='contain' source={images.more} />
+                <Image resizeMode='cover' source={images.more} />
             </View>
             <View>
                 <FlatList
                 horizontal
-                data={DATA}
+                data={post.contents}
                 pagingEnabled
-                renderItem={({ item }) => ( <FastImage style={{width: deviceWidth , height: deviceWidth}} source={{uri: item.imageURI, priority: FastImage.priority.high}}/>)}
+                renderItem={({ item }) =>  {
+                    console.log(item)
+                    return (
+                        item.contentType == ContentType.Image ? 
+                        <FastImage style={{width: deviceWidth , height: deviceWidth}} source={{uri: item.contentURI, priority: FastImage.priority.high}}/>
+                        :
+                        <Video resizeMode="cover" style={{width: deviceWidth , height: deviceWidth}} source={{uri: item.contentURI}}></Video>
+                    )                    
+                }}
                 />
                 
             </View>
             <View style={{paddingHorizontal: aspectratio(10, 'width'), height: aspectratio(54, 'height'), justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row'}}>
                 <View style={{width: aspectratio(100, 'width'), justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row'}}>
-                    <Image resizeMode='contain' source={images.like}/>
-                    <Image resizeMode='contain' source={images.comment}/>
-                    <Image resizeMode='contain' source={images.message}/>
+                    <Image resizeMode='cover' source={images.like}/>
+                    <Image resizeMode='cover' source={images.comment}/>
+                    <Image resizeMode='cover' source={images.message}/>
                 </View>
-                    <Image resizeMode='contain' source={images.save}/>
+                    <Image resizeMode='cover' source={images.save}/>
             </View>
         </>
     )
