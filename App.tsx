@@ -2,7 +2,8 @@ import React from 'react';
 import Navigation from './src/navigation';
 import { Provider } from 'react-redux';
 import { mockServerStart } from './src/mockServer/mockServer';
-import { store } from './src/store';
+import { persistor, store } from './src/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 function App(): React.JSX.Element {
 
@@ -14,7 +15,9 @@ function App(): React.JSX.Element {
 
   return (
     <Provider store={store}>
-      <Navigation/>
+      <PersistGate loading={null} persistor={persistor}>
+        <Navigation/>
+      </PersistGate>
     </Provider>
   );
 
