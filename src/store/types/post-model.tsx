@@ -1,6 +1,6 @@
 export interface PostEntity {
     userName: string;
-    imageURI: string;
+    images: string[];
     profilePhoto: string;
     location?: string;
 }

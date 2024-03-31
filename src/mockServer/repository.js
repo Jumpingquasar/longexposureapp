@@ -1,38 +1,55 @@
 export const repository = {
-    images: [
+    posts: [
         {
             'userName': 'Cem Yilmaz 10',
-            'imageURI': 'https://sample-videos.com/img/Sample-jpg-image-10mb.jpg',
-            'profilePhoto' : 'https://randomuser.me/api/portraits/men/83.jpg'
+            'profilePhoto' : 'https://randomuser.me/api/portraits/men/83.jpg',
+            'images': [
+                'https://sample-videos.com/img/Sample-jpg-image-10mb.jpg',
+            ]
             
-        },        {
+        },        
+        {
             'userName': 'Cem Yilmaz 15',
-            'imageURI': 'https://sample-videos.com/img/Sample-jpg-image-15mb.jpeg',
-            'profilePhoto' : 'https://randomuser.me/api/portraits/men/13.jpg'
-        },        {
+            'profilePhoto' : 'https://randomuser.me/api/portraits/men/13.jpg',
+            'images': [
+                'https://sample-videos.com/img/Sample-jpg-image-15mb.jpeg',
+            ]
+        },        
+        {
             'userName': 'Cem Yilmaz 15',
-            'imageURI': 'https://sample-videos.com/img/Sample-jpg-image-15mb.jpeg',
-            'profilePhoto' : 'https://randomuser.me/api/portraits/men/80.jpg'
-        },        {
-            'userName': 'Cem Yilmaz 20',
-            'imageURI': 'https://sample-videos.com/img/Sample-jpg-image-20mb.jpg',
-            'profilePhoto' : 'https://randomuser.me/api/portraits/lego/5.jpg'
-        },        {
+            'profilePhoto' : 'https://randomuser.me/api/portraits/lego/5.jpg',
+            'images': [
+                'https://sample-videos.com/img/Sample-jpg-image-15mb.jpeg',
+                'https://sample-videos.com/img/Sample-jpg-image-20mb.jpg'
+            ]
+        },      
+        {
             'userName': 'Cem Yilmaz',
-            'imageURI': 'https://sample-videos.com/img/Sample-jpg-image-10mb.jpg',
-            'profilePhoto' : 'https://randomuser.me/api/portraits/women/38.jpg'
-        },        {
+            'profilePhoto' : 'https://randomuser.me/api/portraits/women/38.jpg',
+            'images': [
+                'https://sample-videos.com/img/Sample-jpg-image-15mb.jpeg',
+            ]
+        },        
+        {
             'userName': 'Cem Yilmaz',
-            'imageURI': 'https://sample-videos.com/img/Sample-jpg-image-10mb.jpg',
-            'profilePhoto' : 'https://randomuser.me/api/portraits/women/50.jpg'
-        },        {
+            'profilePhoto' : 'https://randomuser.me/api/portraits/women/50.jpg',
+            'images': [
+                'https://sample-videos.com/img/Sample-jpg-image-15mb.jpeg',
+            ]
+        },        
+        {
             'userName': 'Cem Yilmaz',
-            'imageURI': 'https://sample-videos.com/img/Sample-jpg-image-10mb.jpg',
-            'profilePhoto' : 'https://randomuser.me/api/portraits/women/52.jpg'
-        },        {
+            'profilePhoto' : 'https://randomuser.me/api/portraits/women/52.jpg',
+            'images': [
+                'https://sample-videos.com/img/Sample-jpg-image-15mb.jpeg',
+            ]
+        },        
+        {
             'userName': 'Cem Yilmaz',
-            'imageURI': 'https://sample-videos.com/img/Sample-jpg-image-10mb.jpg',
-            'profilePhoto' : 'https://randomuser.me/api/portraits/men/49.jpg'
+            'profilePhoto' : 'https://randomuser.me/api/portraits/men/49.jpg',
+            'images': [
+                'https://sample-videos.com/img/Sample-jpg-image-15mb.jpeg',
+            ]
         },
     ]
 }

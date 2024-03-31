@@ -1,6 +1,5 @@
 
 import { createServer } from "miragejs"
-import { encryptString } from "../utils/aes"
 import { repository } from "./repository"
 
 const key = 'longExposureIsGreat!&&1998'
@@ -16,7 +15,7 @@ export function mockServerStart(){
               })
 
             this.get("/api/v1/feed", () => {
-                return repository.images;
+                return repository.posts;
             })
         },
     })

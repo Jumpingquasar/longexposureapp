@@ -24,8 +24,15 @@ const textStyles = StyleSheet.create({
     },
 
     bodySmall:{
-        fontSize: 14,
+        fontSize: 13,
         fontFamily: 'SF-Pro-Text-Regular',
+        color: colors.black
+    },
+
+    bodySmallBold:{
+        fontSize: 13,
+        fontWeight: 'bold',
+        fontFamily: 'SF-Pro-Text-Bold',
         color: colors.black
     },
 
