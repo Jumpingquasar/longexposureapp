@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ScrollView } from "react-native";
+import { FlatList, ScrollView } from "react-native";
 import { PostFeed } from "../../../../components/postFeed";
 import { fetchPostsAsync } from "../../../../services/postService";
 import { PostEntity } from "../../../../store/types/post-model";
@@ -14,8 +14,9 @@ export const FeedPage = () => {
     }, [])
 
     return(
-        <ScrollView>
-            {posts.map((post, key)=>{return(<PostFeed key={key} post={post}/>)})}
-        </ScrollView>
+        <FlatList
+            data={posts}
+            renderItem={({ item }) =>  {return (<PostFeed post={item}/>)}}>
+        </FlatList>
     )
 }
