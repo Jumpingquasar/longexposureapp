@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 export function BackButton(){
     const navigation = useNavigation();
     return(
-        <TouchableWithoutFeedback onPress={() => navigation.goBack()} >
+        <TouchableWithoutFeedback style={{position:'absolute', left:0}} onPress={() => navigation.goBack()} >
             <Image source={images.back}></Image>
         </TouchableWithoutFeedback>
     )

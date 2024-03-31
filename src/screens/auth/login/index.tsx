@@ -34,7 +34,7 @@ export function LoginScreen({}: NativeStackScreenProps<RootStackParamList, "Logi
 
     return(
         <View style={{alignItems:'center', justifyContent:'center', flex: 1, backgroundColor: Colors.white}}>
-            <AppBar hasBackButton={true}/>
+            <AppBar isPositioned={true} hasBackButton={true}/>
             <Image style={{marginVertical: aspectratio(50, 'height')}} source={images.instagramLogo}/>
             <PrimaryInputArea
                 hintText="Email"
