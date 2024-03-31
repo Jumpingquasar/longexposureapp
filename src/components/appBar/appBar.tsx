@@ -13,7 +13,7 @@ interface IPrimaryButtonProps {
 
 
 
-export function AppBar({children, hasBackButton, isDivided, isPositioned}: IPrimaryButtonProps) {
+export const AppBar = ({children, hasBackButton, isDivided, isPositioned}: IPrimaryButtonProps) => {
     return (
         <View style={{ height: aspectratio(60, 'height'), position: isPositioned ? 'absolute' : 'relative', top: 0, justifyContent:'space-between'}}>
             <View/>

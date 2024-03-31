@@ -14,7 +14,7 @@ interface IPrimaryButtonProps {
     borderRadius?: number;
 }
 
-export default function PrimaryButton({buttonText, containerStyle, buttonTextStyle, disabled, onPress} : IPrimaryButtonProps){
+export const PrimaryButton = ({buttonText, containerStyle, buttonTextStyle, disabled, onPress} : IPrimaryButtonProps) => {
 
     return(
         <TouchableOpacity 

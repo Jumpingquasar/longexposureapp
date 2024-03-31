@@ -7,9 +7,7 @@ import images from "../../../constants/images";
 import { SearchPage } from "./searchPage";
 import { FeedPage } from "./feedPage";
 
-
-
-export function Home(){
+export const Home = () => {
     const [searchText, setSearchText] = useState('');
 
     return(

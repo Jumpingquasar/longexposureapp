@@ -3,7 +3,7 @@ import { deviceWidth } from "../../constants/distances";
 import colors from "../../constants/colors";
 
 
-export function Divider(){
+export const Divider = () => {
 
     return(
         <View  style={{width:deviceWidth, height: 1, backgroundColor: colors.dividerGray}}  />

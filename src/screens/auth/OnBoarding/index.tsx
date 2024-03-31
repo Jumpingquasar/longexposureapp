@@ -1,14 +1,14 @@
 import { Image, Text, View } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
-import PrimaryButton from "../../../components/primaryButton";
 import { aspectratio } from "../../../constants/distances";
 import { AppScreens } from "../../../navigation/rootNavigation";
 import { RootStackParamList } from "../../../types/navigation";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import images from "../../../constants/images";
 import { Divider } from "../../../components/divider/divider";
+import { PrimaryButton } from "../../../components/primaryButton";
 
-export function OnBoardingScreen({ navigation }: NativeStackScreenProps<RootStackParamList, "OnBoarding">){
+export const OnBoardingScreen = ({ navigation }: NativeStackScreenProps<RootStackParamList, "OnBoarding">) => {
 
     return(
         <View style={{alignItems:'center', justifyContent:'center', flex: 1, backgroundColor: Colors.white}}>

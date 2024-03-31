@@ -1,7 +1,7 @@
 import { Text } from "react-native";
 
 
-export function SearchPage(){
+export const SearchPage = () => {
 
     return(
 

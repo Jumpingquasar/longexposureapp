@@ -12,7 +12,7 @@ interface IPrimaryInputAreaProps {
     isSearch?: boolean;
 }
 
-export function PrimaryInputArea({containerStyle, inputTextStyle, hintText, onChange = (text) => text, isSearch} : IPrimaryInputAreaProps){
+export const PrimaryInputArea = ({containerStyle, inputTextStyle, hintText, onChange = (text) => text, isSearch} : IPrimaryInputAreaProps) => {
 
     const textInputRef = useRef<TextInput | null>( null);
 

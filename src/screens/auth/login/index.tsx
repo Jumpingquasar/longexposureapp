@@ -3,16 +3,16 @@ import { useState } from "react";
 import { Image, View } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { AppBar } from "../../../components/appBar/appBar";
-import PrimaryButton from "../../../components/primaryButton";
 import { PrimaryInputArea } from "../../../components/primaryInputArea";
 import { aspectratio } from "../../../constants/distances";
 import images from "../../../constants/images";
-import { loginRequest } from "../../../store/thunks/userThunks";
 import { RootStackParamList } from "../../../types/navigation";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../store/authSlice";
+import { PrimaryButton } from "../../../components/primaryButton";
+import { userPostLogin } from "../../../services/authService";
 
-export function LoginScreen({}: NativeStackScreenProps<RootStackParamList, "Login">){
+export const LoginScreen = ({}: NativeStackScreenProps<RootStackParamList, "Login">) => {
 
     const dispatch = useDispatch();
     
@@ -27,8 +27,8 @@ export function LoginScreen({}: NativeStackScreenProps<RootStackParamList, "Logi
     };
 
     const onLogin = async () => {
-        const loginResponse = await loginRequest(formData);
-        if (loginResponse)
+        const loginResponse = await userPostLogin(JSON.stringify(formData));
+        if (loginResponse.status == 201)
             dispatch(setUser({Email: formData.Email, isGuest: false}))
     };
 
