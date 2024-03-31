@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { OnBoardingScreen } from "../screens/auth/onBoarding";
 import { LoginScreen } from "../screens/auth/login";
 import { RootStackParamList } from "../types/navigation";
-import { Home } from "../screens/client/Home/home";
+import { Home } from "../screens/client/home";
 import { getUser } from "../store/authSlice/selectors";
 import { Screen } from "react-native-screens";
 
