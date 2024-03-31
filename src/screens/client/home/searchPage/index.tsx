@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import { FlatList } from "react-native";
-import { useDispatch } from "react-redux";
 import { PostSearch } from "../../../../components/postSearch";
 import { searchIterationSize } from "../../../../constants/misc";
 import { fetchSearchAsync } from "../../../../services/postService";
 import { PostEntity } from "../../../../store/types/post-model";
 
 interface ISearchPageProps {
-    query: string;
+    searchTerm: string;
 }
 
-export const SearchPage = ({ query } : ISearchPageProps) => {
+export const SearchPage = ({ searchTerm } : ISearchPageProps) => {
     const [posts, setPosts] = useState<PostEntity[]>([]);
     const [itemStart, setStart] = useState(0);
     
@@ -24,8 +23,11 @@ export const SearchPage = ({ query } : ISearchPageProps) => {
     }
 
     useEffect(() => {
-        getContentsScroll();
-    }, [])
+        setPosts([])
+        setTimeout(() =>{
+            getContentsScroll();
+        }, 1000)
+    }, [searchTerm])
 
     const onEndReached  = () => {
         getContentsScroll();
