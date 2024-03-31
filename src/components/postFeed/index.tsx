@@ -1,18 +1,27 @@
-import FastImage from "react-native-fast-image"
-import { aspectratio, deviceWidth } from "../../constants/distances"
-import { PostEntity } from "../../store/types/post-model"
-import { FlatList, Image, Text, View } from "react-native";
+import { Animated, Image, Text, View, ViewToken } from "react-native";
+import FastImage from "react-native-fast-image";
+import { aspectratio, deviceWidth } from "../../constants/distances";
 import images from "../../constants/images";
 import textStyles from "../../constants/textStyles";
 import { ContentType } from "../../store/types/content-model";
+import { PostEntity } from "../../store/types/post-model";
+import { PageIndicator } from "../pageIndicator";
+import { useState } from "react";
 import Video from "react-native-video";
 
 interface IPostFeedProps {
     post: PostEntity;
-    key: number;
 }
 
-export const PostFeed = ({post, key} : IPostFeedProps) => {
+export const PostFeed = ({post} : IPostFeedProps) => {
+    const [currentPage, setCurrentPage] = useState<number | null>(0);
+
+    const onViewableItemsChanged = (info: {viewableItems : ViewToken[]}) => {
+        if (info && info.viewableItems.length > 0) {
+          const visibleItem = info.viewableItems[0];
+          setCurrentPage(visibleItem.index);
+        }
+      };
 
     return(
         <>
@@ -24,32 +33,31 @@ export const PostFeed = ({post, key} : IPostFeedProps) => {
                         {post.location ? <Text>{post.userName}</Text> : <View></View>}
                     </View>
                 </View>
-                <Image resizeMode='cover' source={images.more} />
+                <Image resizeMode='contain' source={images.more} />
             </View>
-            <View>
-                <FlatList
-                horizontal
-                data={post.contents}
-                pagingEnabled
-                renderItem={({ item }) =>  {
-                    console.log(item)
-                    return (
-                        item.contentType == ContentType.Image ? 
-                        <FastImage style={{width: deviceWidth , height: deviceWidth}} source={{uri: item.contentURI, priority: FastImage.priority.high}}/>
-                        :
-                        <Video resizeMode="cover" style={{width: deviceWidth , height: deviceWidth}} source={{uri: item.contentURI}}></Video>
-                    )                    
-                }}
-                />
-                
-            </View>
+            <Animated.FlatList
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            data={post.contents}
+            pagingEnabled
+            onViewableItemsChanged={onViewableItemsChanged}
+            renderItem={({ item }) =>  {
+                return (
+                    item.contentType == ContentType.Image ? 
+                    <FastImage style={{width: deviceWidth , height: deviceWidth}} source={{uri: item.contentURI, priority: FastImage.priority.high}}/>
+                    :
+                    <Video repeat={true} resizeMode="cover" style={{width: deviceWidth , height: deviceWidth}} source={{uri: item.contentURI}}></Video>
+                )                    
+            }}
+            />
             <View style={{paddingHorizontal: aspectratio(10, 'width'), height: aspectratio(54, 'height'), justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row'}}>
                 <View style={{width: aspectratio(100, 'width'), justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row'}}>
                     <Image resizeMode='cover' source={images.like}/>
                     <Image resizeMode='cover' source={images.comment}/>
                     <Image resizeMode='cover' source={images.message}/>
                 </View>
-                    <Image resizeMode='cover' source={images.save}/>
+                {post.contents.length != 1 && <PageIndicator currentIndex={currentPage} data={post.contents}/>} 
+                <Image resizeMode='cover' source={images.save}/>
             </View>
         </>
     )
