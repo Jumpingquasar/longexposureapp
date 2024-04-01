@@ -25,8 +25,8 @@ export const BottomPost = ({post, currentPage} : IBottomPostProps) => {
                 {post.contents.length != 1 && <PageIndicator currentIndex={currentPage} data={post.contents}/>} 
                 <Image resizeMode='contain' source={images.save}/>
             </View>
-            <CustomText style={textStyles.bodySmall}>Liked by <CustomText style={textStyles.bodySmallBold}>54 users</CustomText></CustomText>
-            <CustomText style={textStyles.bodySmall}><CustomText style={textStyles.bodySmallBold}>{post.userName}</CustomText> Çok güzel bir gün.</CustomText>
+            <CustomText style={textStyles.bodySmall}>Liked by <CustomText style={textStyles.bodySmallBold}>{post.likeCount} users</CustomText></CustomText>
+            <CustomText style={textStyles.bodySmall}><CustomText style={textStyles.bodySmallBold}>{post.userName}</CustomText> {post.caption}</CustomText>
         </View>
     )
 }

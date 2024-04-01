@@ -5,6 +5,8 @@ export interface PostEntity {
     contents: ContentEntity[];
     profilePhoto: string;
     location?: string;
+    likeCount: number;
+    caption?: string;
 }
 
 export interface PostRequestModel {    

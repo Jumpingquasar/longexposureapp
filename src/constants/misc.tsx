@@ -1,2 +1,2 @@
-export const feedIterationSize = 4;
-export const searchIterationSize = 20;
+export const feedIterationSize = 3;
+export const searchIterationSize = 15;
