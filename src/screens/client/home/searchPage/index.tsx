@@ -26,10 +26,9 @@ export const SearchPage = ({ searchTerm } : ISearchPageProps) => {
 
     useEffect(() => {
         setPosts([])
-        clearTimeout(timeout.current);
-        timeout.current = setTimeout(() =>{
+        setTimeout(() =>{
             getContentsScroll();
-        }, 1000)
+        }, 2000)
     }, [searchTerm])
 
     const onEndReached  = () => {

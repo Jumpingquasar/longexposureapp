@@ -20,7 +20,7 @@ export function mockServerStart(){
             }) 
             this.post("/api/v1/search", async (schema, request) => {
                 let attrs = await JSON.parse(request.requestBody)
-                return repository.posts.filter(post => post.userName.toLowerCase().includes(attrs.searchTerm.toLowerCase()))
+                return repository.posts.slice(attrs.itemStart, attrs.itemStart + attrs.searchIterationSize)
             })
         },
     })
