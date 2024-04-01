@@ -1,11 +1,9 @@
-import FastImage from "react-native-fast-image"
-import { aspectratio, deviceWidth } from "../../constants/distances"
-import { PostEntity } from "../../store/types/post-model"
-import { FlatList, Image, Text, View } from "react-native";
-import images from "../../constants/images";
-import textStyles from "../../constants/textStyles";
-import { ContentType } from "../../store/types/content-model";
+import { View } from "react-native";
+import FastImage from "react-native-fast-image";
 import Video from "react-native-video";
+import { ContentType } from "../../store/types/content-model";
+import { PostEntity } from "../../store/types/post-model";
+import styles from "./styles";
 
 interface IPostSearchProps {
     post: PostEntity;
@@ -14,15 +12,19 @@ interface IPostSearchProps {
 export const PostSearch = ({post} : IPostSearchProps) => {
 
     return(
-        <View style={{padding: 1}}>
-            
-            {
-            post.contents[0].contentType == ContentType.Image ? 
-            <FastImage style={{width: deviceWidth/3 - 2 , height: deviceWidth/3 - 2}} source={{uri: post.contents[0].contentURI, priority: FastImage.priority.high}}/>
-            :
-            <Video repeat={true} resizeMode="cover" style={{width: deviceWidth/3 - 2 , height: deviceWidth/3 - 2}} source={{uri: post.contents[0].contentURI}}></Video>
-            }
-                    
+        <View style={styles.container}>            
+            {post.contents[0].contentType == ContentType.Image ? 
+            <FastImage 
+                style={styles.content} 
+                source={{uri: post.contents[0].contentURI, priority: FastImage.priority.high}}
+            />  :
+            <Video 
+                muted={true} 
+                repeat={true} 
+                resizeMode="cover" 
+                style={styles.content} 
+                source={{uri: post.contents[0].contentURI}}
+            />}                    
         </View>
     )
 }

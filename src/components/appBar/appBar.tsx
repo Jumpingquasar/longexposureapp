@@ -1,8 +1,8 @@
 import React from "react";
 import { View } from "react-native";
-import { aspectratio, deviceWidth } from "../../constants/distances";
 import { BackButton } from "../backButton/backButton";
 import { Divider } from "../divider/divider";
+import styles from "./styles";
 
 interface IPrimaryButtonProps {
     hasBackButton?: boolean;
@@ -11,13 +11,11 @@ interface IPrimaryButtonProps {
     isPositioned?: boolean;
 }
 
-
-
 export const AppBar = ({children, hasBackButton, isDivided, isPositioned}: IPrimaryButtonProps) => {
     return (
-        <View style={{ height: aspectratio(60, 'height'), position: isPositioned ? 'absolute' : 'relative', top: 0, justifyContent:'space-between'}}>
+        <View style={[{position: isPositioned ? 'absolute' : 'relative'}, styles.container]}>
             <View/>
-            <View style={{width: deviceWidth, justifyContent:'space-between', alignContent: 'center', flexDirection: 'row', alignItems:'center', paddingHorizontal: aspectratio(16, 'width')}}>
+            <View style={styles.innerContainer}>
                 {hasBackButton ? <BackButton/> : <></>}
                 {children}
                 <></>

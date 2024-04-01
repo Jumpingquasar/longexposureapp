@@ -1,13 +1,12 @@
-import { Animated, Image, Text, View, ViewToken } from "react-native";
+import { useRef, useState } from "react";
+import { Animated, ViewToken } from "react-native";
 import FastImage from "react-native-fast-image";
-import { aspectratio, deviceWidth } from "../../constants/distances";
-import images from "../../constants/images";
-import textStyles from "../../constants/textStyles";
+import Video from "react-native-video";
 import { ContentType } from "../../store/types/content-model";
 import { PostEntity } from "../../store/types/post-model";
-import { PageIndicator } from "../pageIndicator";
-import { useRef, useState } from "react";
-import Video from "react-native-video";
+import { BottomPost } from "../bottomPost";
+import { TopPost } from "../topPost";
+import styles from "./styles";
 
 interface IPostFeedProps {
     post: PostEntity;
@@ -26,41 +25,31 @@ export const PostFeed = ({post} : IPostFeedProps) => {
 
     return(
         <>
-            <View style={{paddingHorizontal: aspectratio(10, 'width'), height: aspectratio(54, 'height'), justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row'}}>
-                <View  style={{alignItems: 'center', flexDirection: 'row'}}>
-                    <FastImage style={{width: 34, height: 34, marginRight: 10, borderRadius: 17}} resizeMode='contain' source={{uri: post.profilePhoto}} />
-                    <View>
-                        <Text style={textStyles.bodySmallBold} >{post.userName}</Text>
-                        {post.location ? <Text>{post.userName}</Text> : <View></View>}
-                    </View>
-                </View>
-                <Image resizeMode='contain' source={images.more} />
-            </View>
+            <TopPost post={post} />
             <Animated.FlatList
-            showsHorizontalScrollIndicator={false}
-            horizontal
-            data={post.contents}
-            pagingEnabled
-            
-            onViewableItemsChanged={onViewableItemsChanged}
-            renderItem={({ item }) =>  {
-                return (
-                    item.contentType == ContentType.Image ? 
-                    <FastImage style={{width: deviceWidth , height: deviceWidth}} source={{uri: item.contentURI, priority: FastImage.priority.high}}/>
-                    :
-                    <Video ref={player} onLoad={() => {player.current && player.current.seek(0)}} repeat={true} resizeMode="cover" style={{width: deviceWidth , height: deviceWidth}} source={{uri: item.contentURI}}></Video>
-                )                    
-            }}
+                showsHorizontalScrollIndicator={false}
+                horizontal
+                data={post.contents}
+                pagingEnabled                
+                onViewableItemsChanged={onViewableItemsChanged}
+                renderItem={({ item }) =>  {
+                    return (
+                        item.contentType == ContentType.Image ? 
+                        <FastImage 
+                            style={styles.content} 
+                            source={{uri: item.contentURI, priority: FastImage.priority.high}}/>
+                        :
+                        <Video 
+                            ref={player} 
+                            onLoad={() => {player.current && player.current.seek(0)}} 
+                            repeat={true} 
+                            resizeMode="cover" 
+                            style={styles.content} 
+                            source={{uri: item.contentURI}}/>
+                    )                    
+                }}
             />
-            <View style={{paddingHorizontal: aspectratio(10, 'width'), height: aspectratio(54, 'height'), justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row'}}>
-                <View style={{width: aspectratio(100, 'width'), justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row'}}>
-                    <Image resizeMode='contain' source={images.like}/>
-                    <Image resizeMode='contain' source={images.comment}/>
-                    <Image resizeMode='contain' source={images.message}/>
-                </View>
-                {post.contents.length != 1 && <PageIndicator currentIndex={currentPage} data={post.contents}/>} 
-                <Image resizeMode='contain' source={images.save}/>
-            </View>
+            <BottomPost post={post} currentPage={currentPage}/>
         </>
     )
 }

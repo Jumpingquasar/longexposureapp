@@ -1,12 +1,11 @@
-import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { OnBoardingScreen } from "../screens/auth/onBoarding";
+import React from "react";
 import { LoginScreen } from "../screens/auth/login";
-import { RootStackParamList } from "../types/navigation";
+import { OnBoardingScreen } from "../screens/auth/onBoarding";
 import { Home } from "../screens/client/home";
 import { getUser } from "../store/authSlice/selectors";
-import { Screen } from "react-native-screens";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { RootStackParamList } from "../types/navigation";
 
 export enum AppScreens {
   OnBoarding = 'OnBoarding',

@@ -4,6 +4,7 @@ import { PostSearch } from "../../../../components/postSearch";
 import { searchIterationSize } from "../../../../constants/misc";
 import { fetchSearchAsync } from "../../../../services/postService";
 import { PostEntity } from "../../../../store/types/post-model";
+import styles from "./styles";
 
 interface ISearchPageProps {
     searchTerm: string;
@@ -40,7 +41,7 @@ export const SearchPage = ({ searchTerm } : ISearchPageProps) => {
         <>
             <FlatList
                 showsVerticalScrollIndicator={false}
-                style={{flexDirection: 'column'}}
+                style={styles.flatList}
                 numColumns={3}
                 data={posts}
                 onEndReached={onEndReached}
