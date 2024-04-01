@@ -30,9 +30,6 @@ export const PostFeed = ({post} : IPostFeedProps) => {
         player?.current?.seek(1)
     };
 
-    const onBuffer = () => { //Enables loader
-        setBuffering(true)
-    };
 
     return(
         <>
@@ -51,17 +48,17 @@ export const PostFeed = ({post} : IPostFeedProps) => {
                             onLoad={onLoad}
                             style={styles.content} 
                             source={{uri: item.contentURI, priority: FastImage.priority.high}}/>
-                        {buffering && //Loading component
+                            {buffering && //Loading component
                             <View style={styles.videoCover}>
                                 <ActivityIndicator color={colors.instagramBlue} size="large"/>                         
-                        </View>}
+                            </View>
+                            }
                         </>
                         :
                         <>
                         <Video 
                             ref={player} 
                             onLoad={onLoad} 
-                            onBuffer={onBuffer}
                             repeat={true} 
                             resizeMode="cover" 
                             style={styles.content} 

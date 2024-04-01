@@ -26,10 +26,6 @@ export const PostSearch = ({post} : IPostSearchProps) => { //SearchScreen post c
         player?.current?.seek(1)
     };
 
-    const onBuffer = () => { //Enables loader
-        setBuffering(true)
-    };
-
     const playVideo = () => { //Onpress, sets playing contentID to redux
         dispatch(setPlayingSearchVideo(post.contentID))
     }
@@ -59,7 +55,6 @@ export const PostSearch = ({post} : IPostSearchProps) => { //SearchScreen post c
                     paused={playingSearchVideo != post.contentID} //Plays the video if the contentID matches Redux state
                     repeat={true}
                     onLoad={onLoad} 
-                    onBuffer={onBuffer}
                     resizeMode="cover" 
                     style={styles.content} 
                     source={{uri: post.contentURI}}
