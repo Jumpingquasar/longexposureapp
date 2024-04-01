@@ -8,4 +8,6 @@ export default {
     comment: require("../assets/images/Comment.png"),
     save: require("../assets/images/Save.png"),
     camera: require("../assets/images/camera.png"),
+    home: require("../assets/images/home.png"),
+    profile: require("../assets/images/profile.png"),
 };

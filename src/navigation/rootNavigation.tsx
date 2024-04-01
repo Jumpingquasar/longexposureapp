@@ -1,9 +1,12 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from "react";
+import { Image } from "react-native";
+import images from "../constants/images";
 import { LoginScreen } from "../screens/auth/login";
 import { OnBoardingScreen } from "../screens/auth/onBoarding";
 import { Home } from "../screens/client/home";
+import { Profile } from "../screens/client/profile";
 import { getUser } from "../store/authSlice/selectors";
 import { RootStackParamList } from "../types/navigation";
 
@@ -25,9 +28,19 @@ export default function RootNavigation() {
   return (
     !user.isGuest ? (
       <Tab.Navigator
-      screenOptions={{ headerShown: false}}>
-        <Tab.Screen name={AppScreens.Home} component={Home} />
-        <Tab.Screen name={AppScreens.Profile} component={Home} />
+      screenOptions={{ headerShown: false, tabBarShowLabel: false}}>
+        <Tab.Screen options={{
+          tabBarIcon: () => (<Image source={images.home}/>),
+          }} 
+          name={AppScreens.Home} 
+          component={Home} 
+        />        
+        <Tab.Screen options={{
+          tabBarIcon: (focused) => (<Image source={images.profile}/>),
+          }} 
+          name={AppScreens.Profile} 
+          component={Profile} 
+        />
       </Tab.Navigator>
     ) : (
       <Stack.Navigator 
