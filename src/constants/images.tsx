@@ -10,4 +10,5 @@ export default {
     camera: require("../assets/images/camera.png"),
     home: require("../assets/images/home.png"),
     profile: require("../assets/images/profile.png"),
+    video: require("../assets/images/video.png"),
 };

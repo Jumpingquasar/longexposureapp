@@ -17,5 +17,10 @@ export default StyleSheet.create({
         bottom: 0,
         right: 0,
         top: 0,
+    },
+    videoIcon: {
+        position: 'absolute',
+        right: 10,
+        top: 10,
     }
 })

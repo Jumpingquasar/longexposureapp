@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { ActivityIndicator, TouchableWithoutFeedback, View } from "react-native";
+import { ActivityIndicator, Image, TouchableWithoutFeedback, View } from "react-native";
 import FastImage from "react-native-fast-image";
 import Video from "react-native-video";
 import colors from "../../constants/colors";
@@ -8,6 +8,7 @@ import styles from "./styles";
 import { getPlayingSearchVideo } from "../../store/systemSlice/selectors";
 import { useDispatch } from "react-redux";
 import { setPlayingSearchVideo } from "../../store/systemSlice";
+import images from "../../constants/images";
 
 interface IPostSearchProps {
     post: ContentEntity;
@@ -64,6 +65,11 @@ export const PostSearch = ({post} : IPostSearchProps) => {
                     source={{uri: post.contentURI}}
                 />
             </TouchableWithoutFeedback>
+            {!buffering && playingSearchVideo != post.contentID &&
+                <View style={styles.videoIcon}>
+                    <Image source={images.video}/>                         
+                </View>
+            }
             {buffering && 
                 <View style={styles.videoCover}>
                     <ActivityIndicator color={colors.instagramBlue}  size="small"/>                         
