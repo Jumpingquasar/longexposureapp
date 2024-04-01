@@ -6,9 +6,6 @@ import { persistor, store } from './src/store';
 import { PersistGate } from 'redux-persist/integration/react';
 
 function App(): React.JSX.Element {
-
-  //TODO: APK & TestFlight
-  //TODO: App Icon IOS
   
   mockServerStart(); // Mock API. Simulates API responses using the repository object.
 
