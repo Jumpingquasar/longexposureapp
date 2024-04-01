@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import { FlatList } from "react-native";
+import { FlatList, View } from "react-native";
 import { BottomLoader } from "../../../../components/bottomLoader";
 import { PostFeed } from "../../../../components/postFeed";
 import { feedIterationSize } from "../../../../constants/misc";
 import { fetchPostsAsync } from "../../../../services/postService";
 import { PostEntity } from "../../../../store/types/post-model";
+import { FlashList } from "@shopify/flash-list";
+import { aspectratio, deviceWidth } from "../../../../constants/distances";
+import styles from "./styles";
 
 
 
@@ -33,15 +36,16 @@ export const FeedPage = () => {
     }
 
     return(
-        <>
-        <FlatList
+        <View style={styles.flatlist}>
+        <FlashList
+            estimatedItemSize={deviceWidth}
             showsVerticalScrollIndicator={false}
             data={posts}
             onEndReached ={onEndReached}            
             onEndReachedThreshold={0.2}
             renderItem={({ item }) =>  {return (<PostFeed post={item}/>)}}>
-        </FlatList>
+        </FlashList>
         {BottomLoader(isFetching)}
-        </>
+        </View>
     )
 }
