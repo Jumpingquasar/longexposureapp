@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { ActivityIndicator, Image, TouchableWithoutFeedback, View } from "react-native";
+import { ActivityIndicator, Image, Pressable, TouchableWithoutFeedback, View } from "react-native";
 import FastImage from "react-native-fast-image";
 import Video from "react-native-video";
 import colors from "../../constants/colors";
@@ -47,7 +47,7 @@ export const PostSearch = ({post} : IPostSearchProps) => { //SearchScreen post c
             </>
             :
             <>
-            <TouchableWithoutFeedback
+            <Pressable
                 onPress={playVideo}
                 >
                 <Video
@@ -59,7 +59,7 @@ export const PostSearch = ({post} : IPostSearchProps) => { //SearchScreen post c
                     style={styles.content} 
                     source={{uri: post.contentURI}}
                 />
-            </TouchableWithoutFeedback>
+            </Pressable>
             {!buffering && playingSearchVideo != post.contentID && //Video indicator Icon
                 <View style={styles.videoIcon}>
                     <Image source={images.video}/>                         
