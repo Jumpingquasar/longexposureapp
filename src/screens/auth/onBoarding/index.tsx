@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Image, View } from "react-native";
+import { Image, SafeAreaView, View } from "react-native";
 import { CustomText } from "../../../components/customText/customText";
 import { Divider } from "../../../components/divider/divider";
 import { PrimaryButton } from "../../../components/primaryButton";
@@ -11,7 +11,7 @@ import styles from "./styles";
 export const OnBoardingScreen = ({ navigation }: NativeStackScreenProps<RootStackParamList, "OnBoarding">) => {
 
     return(
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <View style={styles.topContainer}>
                 <Image source={images.instagramLogo} ></Image>
                 <PrimaryButton
@@ -27,6 +27,6 @@ export const OnBoardingScreen = ({ navigation }: NativeStackScreenProps<RootStac
                     </CustomText>
                 </CustomText>
             </View>
-        </View>
+        </SafeAreaView>
     )
 }

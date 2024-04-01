@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useState } from "react";
-import { Image, View } from "react-native";
+import { Image, SafeAreaView } from "react-native";
 import { useDispatch } from "react-redux";
 import { AppBar } from "../../../components/appBar/appBar";
 import { PrimaryButton } from "../../../components/primaryButton";
@@ -33,7 +33,7 @@ export const LoginScreen = ({}: NativeStackScreenProps<RootStackParamList, "Logi
     };
 
     return(
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <AppBar isPositioned={true} hasBackButton={true}/>
             <Image style={styles.logo} source={images.instagramLogo}/>
             <PrimaryInputArea
@@ -50,6 +50,6 @@ export const LoginScreen = ({}: NativeStackScreenProps<RootStackParamList, "Logi
                 buttonText="Login"
                 onPress={onLogin}
             />
-        </View>
+        </SafeAreaView>
     )
 }
