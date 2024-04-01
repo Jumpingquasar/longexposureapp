@@ -21,5 +21,14 @@ export default StyleSheet.create({
     content: {
         width: deviceWidth , 
         height: deviceWidth,
+    },
+    videoCover: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'absolute',
+        left: 0,
+        bottom: 0,
+        right: 0,
+        top: 0,
     }
 })
