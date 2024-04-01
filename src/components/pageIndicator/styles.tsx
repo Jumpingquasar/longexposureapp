@@ -5,8 +5,9 @@ export default StyleSheet.create({
     container: {
         width: deviceWidth, 
         justifyContent: 'center', 
-        alignItems: 'center', 
-        position:'absolute'
+        alignItems: 'center',
+        position:'absolute',
+        paddingRight: aspectratio(20, 'width')
     },
     innerContainer: {
         flexDirection: 'row', 

@@ -36,6 +36,7 @@ export const FeedPage = () => {
     }
 
     return(
+        <>
         <View style={styles.flatlist}>
         <FlashList
             estimatedItemSize={deviceWidth}
@@ -45,7 +46,8 @@ export const FeedPage = () => {
             onEndReachedThreshold={0.2}
             renderItem={({ item }) =>  {return (<PostFeed post={item}/>)}}>
         </FlashList>
-        {BottomLoader(isFetching)}
         </View>
+        {BottomLoader(isFetching)}
+        </>
     )
 }
