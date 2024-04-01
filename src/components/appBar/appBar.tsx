@@ -18,9 +18,9 @@ export const AppBar = ({children, hasBackButton, isDivided, isPositioned}: IPrim
         <View style={{ height: aspectratio(60, 'height'), position: isPositioned ? 'absolute' : 'relative', top: 0, justifyContent:'space-between'}}>
             <View/>
             <View style={{width: deviceWidth, justifyContent:'space-between', alignContent: 'center', flexDirection: 'row', alignItems:'center', paddingHorizontal: aspectratio(16, 'width')}}>
-                {hasBackButton ? <BackButton/> : <View/>}
+                {hasBackButton ? <BackButton/> : <></>}
                 {children}
-                <View/>
+                <></>
             </View>
             {isDivided && <Divider/>}
         </View>

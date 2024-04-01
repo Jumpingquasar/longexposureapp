@@ -7,4 +7,5 @@ export default {
     message: require("../assets/images/Messenger.png"),
     comment: require("../assets/images/Comment.png"),
     save: require("../assets/images/Save.png"),
+    camera: require("../assets/images/camera.png"),
 };
