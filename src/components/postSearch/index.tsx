@@ -1,19 +1,17 @@
+import { useState } from "react";
 import { ActivityIndicator, View } from "react-native";
 import FastImage from "react-native-fast-image";
-import Video from "react-native-video";
-import { ContentType } from "../../store/types/content-model";
-import { PostEntity } from "../../store/types/post-model";
-import styles from "./styles";
-import { useState } from "react";
 import colors from "../../constants/colors";
+import { ContentEntity, ContentType } from "../../store/types/content-model";
+import styles from "./styles";
+import Video from "react-native-fast-video";
 
 interface IPostSearchProps {
-    post: PostEntity;
+    post: ContentEntity;
 }
 
 export const PostSearch = ({post} : IPostSearchProps) => {
     const [buffering, setBuffering] = useState(true)
-
     const onLoad = () => {
         setBuffering(false)
     };
@@ -23,12 +21,12 @@ export const PostSearch = ({post} : IPostSearchProps) => {
     };
     return(
         <View style={styles.container}>            
-            {post.contents[0].contentType == ContentType.Image ?
+            {post.contentType == ContentType.Image ?
             <>
             <FastImage 
                 onLoad={onLoad}
                 style={styles.content} 
-                source={{uri: post.contents[0].contentURI, priority: FastImage.priority.high}}
+                source={{uri: post.contentURI, priority: FastImage.priority.high}}
             />
             {buffering && 
                 <View style={styles.videoCover}>
@@ -45,7 +43,7 @@ export const PostSearch = ({post} : IPostSearchProps) => {
                 onBuffer={onBuffer}
                 resizeMode="cover" 
                 style={styles.content} 
-                source={{uri: post.contents[0].contentURI}}
+                source={{uri: post.contentURI}}
             />
             {buffering && 
                 <View style={styles.videoCover}>

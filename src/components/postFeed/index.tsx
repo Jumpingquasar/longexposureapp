@@ -1,13 +1,13 @@
 import { useRef, useState } from "react";
 import { ActivityIndicator, Animated, View, ViewToken } from "react-native";
 import FastImage from "react-native-fast-image";
-import Video from "react-native-video";
 import { ContentType } from "../../store/types/content-model";
 import { PostEntity } from "../../store/types/post-model";
 import { BottomPost } from "../bottomPost";
 import { TopPost } from "../topPost";
 import styles from "./styles";
 import colors from "../../constants/colors";
+import Video from "react-native-fast-video";
 
 interface IPostFeedProps {
     post: PostEntity;

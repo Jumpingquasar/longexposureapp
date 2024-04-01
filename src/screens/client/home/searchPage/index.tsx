@@ -5,15 +5,15 @@ import { searchIterationSize } from "../../../../constants/misc";
 import { fetchSearchAsync } from "../../../../services/postService";
 import { PostEntity } from "../../../../store/types/post-model";
 import styles from "./styles";
+import { ContentEntity } from "../../../../store/types/content-model";
 
 interface ISearchPageProps {
     searchTerm: string;
 }
 
 export const SearchPage = ({ searchTerm } : ISearchPageProps) => {
-    const [posts, setPosts] = useState<PostEntity[]>([]);
+    const [posts, setPosts] = useState<ContentEntity[]>([]);
     const [itemStart, setStart] = useState(0);
-    const timeout = useRef(null);
     
     function getContentsScroll(){
         fetchSearchAsync({itemStart, searchIterationSize}).then(async (data) => {
@@ -41,7 +41,9 @@ export const SearchPage = ({ searchTerm } : ISearchPageProps) => {
             <FlatList
                 showsVerticalScrollIndicator={false}
                 style={styles.flatList}
+                removeClippedSubviews={true}
                 numColumns={3}
+                keyExtractor={(item, index) => item.contentID}
                 data={posts}
                 onEndReached={onEndReached}
                 renderItem={({ item }) =>  {return (<PostSearch post={item}/>)}}>
