@@ -11,8 +11,7 @@ interface IBottomPostProps {
     currentPage: number | null;
 }
 
-export const BottomPost = ({post, currentPage} : IBottomPostProps) => {
-
+export const BottomPost = ({post, currentPage} : IBottomPostProps) => { //Content under HomeScreen post
 
     return(
         <View style={styles.container}>

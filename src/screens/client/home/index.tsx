@@ -18,7 +18,8 @@ export const Home = () => {
                 <Image source={images.message}/>
             </AppBar>
             <PrimaryInputArea onChange={(text) => setSearchTerm(text)} hintText="Search" isSearch={true}/>
-            {searchTerm.length != 0 ? <SearchPage searchTerm={searchTerm} /> : <FeedPage/>}
+            {/* Conditional page view based on search value */}
+            {searchTerm.length != 0 ? <SearchPage searchTerm={searchTerm} /> : <FeedPage/>} 
         </View>
     )
 }

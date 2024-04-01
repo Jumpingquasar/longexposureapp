@@ -4,15 +4,15 @@ import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer, pers
 import { rootReducer } from "./reducer";
 
 
-const persistConfig = {
+const persistConfig = { //Sets reducer persistence config
   key: 'longexposure',
   storage: AsyncStorage,
   whitelist: ['auth'],
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer); //Creates persisted reducer
 
-export const store = configureStore({
+export const store = configureStore({ //Creates a Redux store based on given reducer
   reducer: {persistedReducer},
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -22,7 +22,7 @@ export const store = configureStore({
     }),
 });
 
-export const persistor = persistStore(store);
+export const persistor = persistStore(store); //Sets persistor based on the created store
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;

@@ -8,7 +8,7 @@ interface ICustomTextProps {
    
 }
 
-export const CustomText: FunctionComponent<ICustomTextProps> = ({ children, style }) => {
+export const CustomText: FunctionComponent<ICustomTextProps> = ({ children, style }) => { //Custom text component
 
     return(
         <Text style={[textStyles.bodyMedium, style]}>{children}</Text>

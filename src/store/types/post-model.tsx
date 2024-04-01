@@ -9,7 +9,7 @@ export interface PostEntity {
     caption?: string;
 }
 
-export interface PostRequestModel {    
+export interface PostRequestModel {
     itemStart: number;
 }
 

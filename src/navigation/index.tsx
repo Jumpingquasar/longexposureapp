@@ -12,12 +12,13 @@ export default function Navigation({}) {
 
 
   return (
-    <NavigationContainer
-    >
+    <NavigationContainer>   
+        {/* App status bar */}
         <StatusBar
             barStyle={"light-content"}
             backgroundColor={Colors.white}
         />
+        {/* Navigation root. Handles and stores stack & tab components */}
         <RootNavigation/>
     </NavigationContainer>
   );

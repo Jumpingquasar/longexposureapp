@@ -5,7 +5,7 @@ export const deviceHeight = Dimensions.get("window").height;
 const designHeight = 812;
 const designWidth = 375;
 
-export const aspectratio = (value: number, wh: string) => {
+export const aspectratio = (value: number, wh: string) => { //Handles responsive sizing
   switch (wh) {
     case "width":
       return (deviceWidth * value) / designWidth as number;

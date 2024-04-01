@@ -8,7 +8,7 @@ export interface IPageIndicatorProps {
     currentIndex: number | null;
 }
 
-export const PageIndicator = ({data, currentIndex}: IPageIndicatorProps) => {
+export const PageIndicator = ({data, currentIndex}: IPageIndicatorProps) => { //HomeScreen pagination indicator
 
   return (
     <View style={styles.container}>

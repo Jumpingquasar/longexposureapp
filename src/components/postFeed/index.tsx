@@ -9,7 +9,7 @@ import styles from "./styles";
 import colors from "../../constants/colors";
 import Video from "react-native-video";
 
-interface IPostFeedProps {
+interface IPostFeedProps { //HomeScreen post component
     post: PostEntity;
 }
 
@@ -18,19 +18,19 @@ export const PostFeed = ({post} : IPostFeedProps) => {
     const player = useRef<Video>(null);
     const [buffering, setBuffering] = useState(true)
 
-    const onViewableItemsChanged = (info: {viewableItems : ViewToken[]}) => {
+    const onViewableItemsChanged = (info: {viewableItems : ViewToken[]}) => { //Sets page indicator based on viewable content
         if (info && info.viewableItems.length > 0) {
           const visibleItem = info.viewableItems[0];
           setCurrentPage(visibleItem.index);
         }
     };
 
-    const onLoad = () => {
+    const onLoad = () => { //Sets thumbnail and disables loader
         setBuffering(false)
         player?.current?.seek(1)
     };
 
-    const onBuffer = () => {
+    const onBuffer = () => { //Enables loader
         setBuffering(true)
     };
 
@@ -45,13 +45,13 @@ export const PostFeed = ({post} : IPostFeedProps) => {
                 onViewableItemsChanged={onViewableItemsChanged}
                 renderItem={({ item }) =>  {
                     return (
-                        item.contentType == ContentType.Image ? 
+                        item.contentType == ContentType.Image ? //Renders Image or Video based on content type
                         <>
                         <FastImage 
                             onLoad={onLoad}
                             style={styles.content} 
                             source={{uri: item.contentURI, priority: FastImage.priority.high}}/>
-                        {buffering && 
+                        {buffering && //Loading component
                             <View style={styles.videoCover}>
                                 <ActivityIndicator color={colors.instagramBlue} size="large"/>                         
                         </View>}
@@ -66,10 +66,10 @@ export const PostFeed = ({post} : IPostFeedProps) => {
                             resizeMode="cover" 
                             style={styles.content} 
                             source={{uri: item.contentURI}}/>
-                        {buffering && 
-                            <View style={styles.videoCover}>
-                                <ActivityIndicator color={colors.instagramBlue}  size="large"/>                         
-                        </View>}
+                            {buffering && //Loading component
+                                <View style={styles.videoCover}>
+                                    <ActivityIndicator color={colors.instagramBlue}  size="large"/>                         
+                            </View>}
                         </>
                     )                    
                 }}

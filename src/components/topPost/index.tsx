@@ -10,7 +10,7 @@ interface ITopPostProps {
     post: PostEntity;
 }
 
-export const TopPost = ({post} : ITopPostProps) => {
+export const TopPost = ({post} : ITopPostProps) => { //Content above HomeScreen post
 
     return(
         <View style={styles.container}>

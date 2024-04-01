@@ -28,6 +28,7 @@ export const LoginScreen = ({}: NativeStackScreenProps<RootStackParamList, "Logi
     const onLogin = async () => {
         const loginResponse = await userPostLogin(JSON.stringify(formData));
         if (loginResponse.response.status == 201)
+            // In case of successful response from API sets the user information to Redux persist.
             dispatch(setUser({Email: formData.Email, isGuest: false, encryptedFormData: loginResponse.encryptedFormData}))
     };
 

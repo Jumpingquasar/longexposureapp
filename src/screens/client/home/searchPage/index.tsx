@@ -14,23 +14,23 @@ export const SearchPage = ({ searchTerm } : ISearchPageProps) => {
     const [posts, setPosts] = useState<ContentEntity[]>([]);
     const [itemStart, setStart] = useState(0);
     
-    function getContentsScroll(){
+    function getContentsScroll(){ //Calls the fetchSearch API with the number of posts expected in return. No search query is implemented.
         fetchSearchAsync({itemStart, searchIterationSize}).then(async (data) => {
-            let newPosts = await JSON.parse(await data.text())
-            setPosts([...posts, ...newPosts]);
-            if (newPosts.length != 0)
+            let newPosts = await JSON.parse(await data.text()) //Parses the response
+            setPosts([...posts, ...newPosts]); //Sets the responding posts to the previous posts object
+            if (newPosts.length != 0) //Signifies the end of content reach
                 setStart(itemStart + searchIterationSize);
         })
     }
 
-    useEffect(() => {
+    useEffect(() => { //Introduces a delay to accommodate the fast searchTerm onChange 
         setPosts([])
         setTimeout(() =>{
             getContentsScroll();
         }, 2000)
     }, [searchTerm])
 
-    const onEndReached  = () => {
+    const onEndReached  = () => {//Calls the fetch action when user reaches the end of the flatlist 
         getContentsScroll();
     }
 

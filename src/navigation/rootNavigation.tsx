@@ -23,11 +23,11 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function RootNavigation() {
   
   const Tab = createBottomTabNavigator();
-  const user = getUser();
+  const user = getUser(); //Gets persistent user information
 
   return (
-    !user.isGuest ? (
-      <Tab.Navigator
+    !user.isGuest ? ( // Checks previous logins
+      <Tab.Navigator  // Progresses straight to HomePage if previously logged in. Also changes to HomeScreen if a user logs in.
       screenOptions={{ headerShown: false, tabBarShowLabel: false}}>
         <Tab.Screen options={{
           tabBarIcon: () => (<Image source={images.home}/>),
@@ -42,7 +42,7 @@ export default function RootNavigation() {
           component={Profile} 
         />
       </Tab.Navigator>
-    ) : (
+    ) : ( // Progresses to OnBoarding page if no logged in user is found.
       <Stack.Navigator 
         screenOptions={{ headerShown: false}}
         initialRouteName={AppScreens.OnBoarding}>

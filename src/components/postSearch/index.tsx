@@ -14,36 +14,36 @@ interface IPostSearchProps {
     post: ContentEntity;
 }
 
-export const PostSearch = ({post} : IPostSearchProps) => {
+export const PostSearch = ({post} : IPostSearchProps) => { //SearchScreen post component
     const [buffering, setBuffering] = useState(true)
     const player = useRef(null);
 
     const playingSearchVideo = getPlayingSearchVideo();
     const dispatch = useDispatch();
     
-    const onLoad = () => {
+    const onLoad = () => {  //Sets thumbnail and disables loader
         setBuffering(false)
         player?.current?.seek(1)
     };
 
-    const onBuffer = () => {
+    const onBuffer = () => { //Enables loader
         setBuffering(true)
     };
 
-    const playVideo = () => {
+    const playVideo = () => { //Onpress, sets playing contentID to redux
         dispatch(setPlayingSearchVideo(post.contentID))
     }
 
     return(
         <View style={styles.container}>            
-            {post.contentType == ContentType.Image ?
+            {post.contentType == ContentType.Image ? //Renders Image or Video based on content type
             <>
             <FastImage 
                 onLoad={onLoad}
                 style={styles.content} 
                 source={{uri: post.contentURI, priority: FastImage.priority.high}}
             />
-            {buffering && 
+            {buffering && //Loading component
                 <View style={styles.videoCover}>
                     <ActivityIndicator color={colors.instagramBlue}  size="small"/>                         
                 </View>
@@ -56,7 +56,7 @@ export const PostSearch = ({post} : IPostSearchProps) => {
                 >
                 <Video
                     ref={player}
-                    paused={playingSearchVideo != post.contentID}
+                    paused={playingSearchVideo != post.contentID} //Plays the video if the contentID matches Redux state
                     repeat={true}
                     onLoad={onLoad} 
                     onBuffer={onBuffer}
@@ -65,12 +65,12 @@ export const PostSearch = ({post} : IPostSearchProps) => {
                     source={{uri: post.contentURI}}
                 />
             </TouchableWithoutFeedback>
-            {!buffering && playingSearchVideo != post.contentID &&
+            {!buffering && playingSearchVideo != post.contentID && //Video indicator Icon
                 <View style={styles.videoIcon}>
                     <Image source={images.video}/>                         
                 </View>
             }
-            {buffering && 
+            {buffering && //Loading component
                 <View style={styles.videoCover}>
                     <ActivityIndicator color={colors.instagramBlue}  size="small"/>                         
                 </View>

@@ -13,11 +13,11 @@ export const FeedPage = () => {
     const [itemStart, setStart] = useState(0);
     const [isFetching, setIsFetching] = useState(false);
 
-    function getContentsScroll(){
+    function getContentsScroll(){ //Calls the fetchPosts API with the number of posts expected in return
         fetchPostsAsync({itemStart, feedIterationSize}).then(async (data) => {
-            let newPosts = await JSON.parse(await data.text())
-            setPosts([...posts, ...newPosts]);
-            if (newPosts.length != 0)
+            let newPosts = await JSON.parse(await data.text()) // Parses the response
+            setPosts([...posts, ...newPosts]); // Sets the responding posts to the previous posts object
+            if (newPosts.length != 0) //Signifies the end of content reach
                 setStart(itemStart + feedIterationSize);            
             setIsFetching(false)            
         })
@@ -27,7 +27,7 @@ export const FeedPage = () => {
         getContentsScroll();
     }, [])
 
-    const onEndReached  = () => {            
+    const onEndReached  = () => { //Calls the fetch action when user reaches the end of the flatlist     
         setIsFetching(true)  
         getContentsScroll();
     }
