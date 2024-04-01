@@ -7,15 +7,17 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 function App(): React.JSX.Element {
 
-
-
-  //TODO: Add StyleSheets
+  //TODO: APK & TestFlight
+  //TODO: App Icon IOS
   
-  mockServerStart();
+  mockServerStart(); // Mock API. Simulates API responses using the repository object.
 
   return (
-    <Provider store={store}>
+    // Redux Provider
+    <Provider store={store}> 
+      {/* Redux persistence */}
       <PersistGate loading={null} persistor={persistor}>
+        {/* Navigation main component */}
         <Navigation/>
       </PersistGate>
     </Provider>
