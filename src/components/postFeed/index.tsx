@@ -7,7 +7,7 @@ import { BottomPost } from "../bottomPost";
 import { TopPost } from "../topPost";
 import styles from "./styles";
 import colors from "../../constants/colors";
-import Video from "react-native-fast-video";
+import Video from "react-native-video";
 
 interface IPostFeedProps {
     post: PostEntity;
@@ -27,6 +27,7 @@ export const PostFeed = ({post} : IPostFeedProps) => {
 
     const onLoad = () => {
         setBuffering(false)
+        player?.current?.seek(1)
     };
 
     const onBuffer = () => {

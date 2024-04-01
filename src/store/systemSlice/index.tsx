@@ -1,12 +1,11 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { UserProfileEntity } from '../types/user-model'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export interface SystemState {
-    loading: boolean;
+    playingSearchVideo: string;
 }
 
 const initialState: SystemState = {
-    loading: false
+    playingSearchVideo: ''
 }
 
 
@@ -14,11 +13,11 @@ const systemSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setLoading: (state, action: PayloadAction<boolean>) => {
-      state.loading = action.payload;
+    setPlayingSearchVideo: (state, action: PayloadAction<string>) => {
+      state.playingSearchVideo = action.payload;
     },
   },
 })
 
-export const { setLoading } = systemSlice.actions
+export const { setPlayingSearchVideo } = systemSlice.actions
 export default systemSlice.reducer

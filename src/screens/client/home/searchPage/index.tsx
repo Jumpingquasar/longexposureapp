@@ -1,11 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { FlatList } from "react-native";
 import { PostSearch } from "../../../../components/postSearch";
 import { searchIterationSize } from "../../../../constants/misc";
 import { fetchSearchAsync } from "../../../../services/postService";
-import { PostEntity } from "../../../../store/types/post-model";
-import styles from "./styles";
 import { ContentEntity } from "../../../../store/types/content-model";
+import styles from "./styles";
 
 interface ISearchPageProps {
     searchTerm: string;
@@ -43,10 +42,12 @@ export const SearchPage = ({ searchTerm } : ISearchPageProps) => {
                 style={styles.flatList}
                 removeClippedSubviews={true}
                 numColumns={3}
-                keyExtractor={(item, index) => item.contentID}
                 data={posts}
+                keyExtractor={item => item.contentID}
                 onEndReached={onEndReached}
-                renderItem={({ item }) =>  {return (<PostSearch post={item}/>)}}>
+                renderItem={({ item }) =>  {
+                    return (<PostSearch post={item}/>)
+                    }}>
             </FlatList>
         </>
     )

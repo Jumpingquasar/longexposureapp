@@ -1299,8 +1299,8 @@ export const repository = {
         },
         {
             contentID: "5",
-            contentURI: "https://videos.pexels.com/video-files/20184664/20184664-hd_1920_1080_30fps.mp4",
-            contentType: ContentType.Video
+            contentURI: 'https://sample-videos.com/img/Sample-jpg-image-10mb.jpg',
+            contentType: ContentType.Image
         },
         {
             contentID: "6",
@@ -1353,8 +1353,8 @@ export const repository = {
         },
         {
             contentID: "16",
-            contentURI: 'https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_10mb.mp4',
-            contentType: ContentType.Video
+            contentURI: 'https://sample-videos.com/img/Sample-jpg-image-10mb.jpg',
+            contentType: ContentType.Image
         },
         {
             contentID: "17",
@@ -1367,10 +1367,10 @@ export const repository = {
             contentType: ContentType.Image
         },
         {
-            contentID: "19",
-            contentURI: 'https://videos.pexels.com/video-files/9010663/9010663-hd_1920_1080_30fps.mp4',
-            contentType: ContentType.Video
-        }, 
+            contentID: "29",
+            contentURI: "https://sample-videos.com/img/Sample-jpg-image-20mb.jpg",
+            contentType: ContentType.Image
+        },
         {
             contentID: "20",
             contentURI: 'https://images.pexels.com/photos/5634771/pexels-photo-5634771.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
@@ -1403,8 +1403,8 @@ export const repository = {
         },
         {
             contentID: "26",
-            contentURI: 'https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_10mb.mp4',
-            contentType: ContentType.Video
+            contentURI: 'https://sample-videos.com/img/Sample-jpg-image-10mb.jpg',
+            contentType: ContentType.Image
         },
         {
             contentID: "27",
@@ -1447,8 +1447,8 @@ export const repository = {
         },
         {
             contentID: "35",
-            contentURI: "https://videos.pexels.com/video-files/20184664/20184664-hd_1920_1080_30fps.mp4",
-            contentType: ContentType.Video
+            contentURI: 'https://sample-videos.com/img/Sample-png-image-10mb.png',
+            contentType: ContentType.Image
         },
         {
             contentID: "36",
@@ -1467,9 +1467,9 @@ export const repository = {
         },
         {
             contentID: "39",
-            contentURI: 'https://videos.pexels.com/video-files/9010663/9010663-hd_1920_1080_30fps.mp4',
-            contentType: ContentType.Video
-        }, 
+            contentURI: 'https://images.pexels.com/photos/5634771/pexels-photo-5634771.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            contentType: ContentType.Image
+        },
         {
             contentID: "40",
             contentURI: 'https://images.pexels.com/photos/5634771/pexels-photo-5634771.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
