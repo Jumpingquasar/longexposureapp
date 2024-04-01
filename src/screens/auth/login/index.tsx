@@ -27,8 +27,8 @@ export const LoginScreen = ({}: NativeStackScreenProps<RootStackParamList, "Logi
 
     const onLogin = async () => {
         const loginResponse = await userPostLogin(JSON.stringify(formData));
-        if (loginResponse.status == 201)
-            dispatch(setUser({Email: formData.Email, isGuest: false}))
+        if (loginResponse.response.status == 201)
+            dispatch(setUser({Email: formData.Email, isGuest: false, encryptedFormData: loginResponse.encryptedFormData}))
     };
 
     return(

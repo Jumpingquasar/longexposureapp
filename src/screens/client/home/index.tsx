@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Image, View } from "react-native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 import { AppBar } from "../../../components/appBar/appBar";
 import { PrimaryInputArea } from "../../../components/primaryInputArea";
 import images from "../../../constants/images";
